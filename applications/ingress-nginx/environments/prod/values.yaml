@@ -8,7 +8,7 @@
 # fullnameOverride:
 
 # -- Override the deployment namespace; defaults to .Release.Namespace
-namespaceOverride: helmfile-test
+namespaceOverride: helmfile-poc-prod
 ## Labels to apply to all resources
 ##
 commonLabels: {}

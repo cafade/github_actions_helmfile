@@ -8,5 +8,13 @@ releases:
     chart: ingress-nginx/ingress-nginx
     version: 4.11.2
     installed: true
+environments:
+  dev:
     values:
-      - values.yaml
+      - environments/dev/values.yaml
+  qa:
+    values:
+      - environments/qa/values.yaml
+  prod:
+    values:
+      - environments/prod/values.yaml

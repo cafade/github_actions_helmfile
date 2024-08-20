@@ -1,8 +1,8 @@
-name: github_actions_helmfile
+name: github_actions_helmfile-apply
 
 on:
-  pull_request:
-    branches: ["**"]
+  push:
+    branches: ["dev", "qa", "master"]
 
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ on:
 #     working-directory: ./templates
 
 jobs:
-  dev-helm-diff:
+  dev-helm-apply:
     if: ${{ github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && github.base_ref == 'dev') }}
     runs-on: self-hosted
     # environment: ${{ inputs.ENVIRONMENT_NAME }}
@@ -19,12 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: helmfile diff
+      - name: Helmfile apply
         uses: helmfile/helmfile-action@v1.9.1
         with:
           helmfile-version: "v0.167.1"
           helm-version: "v3.15.3"
           helm-plugins: >
             https://github.com/databus23/helm-diff
-          helmfile-args: --file helmfile.yaml diff --environment dev --suppress-secrets
+          helmfile-args: --file helmfile.yaml apply --environment dev --suppress-secrets
           helmfile-auto-init: "false"

@@ -26,5 +26,6 @@ jobs:
           helm-version: "v3.15.3"
           helm-plugins: >
             https://github.com/databus23/helm-diff,
+            https://github.com/jkroepke/helm-secrets
           helmfile-args: diff --suppress-secrets
           helmfile-auto-init: "false"

@@ -4,3 +4,14 @@ helmDefaults:
 
 helmfiles:
   - path: applications/ingress-nginx/helmfile.yaml
+
+environments:
+  dev:
+    values:
+      - environments/dev/values.yaml
+  qa:
+    values:
+      - environments/qa/values.yaml
+  prod:
+    values:
+      - environments/prod/values.yaml

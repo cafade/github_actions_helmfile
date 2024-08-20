@@ -1,0 +1,30 @@
+name: github_actions_helmfile
+
+on:
+  pull_request:
+    branches: ["**"]
+
+  workflow_dispatch:
+
+# defaults:
+#   run:
+#     working-directory: ./templates
+
+jobs:
+  dev-helm-diff:
+    if: ${{ github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && github.base_ref == 'dev') }}
+    runs-on: self-hosted
+    # environment: ${{ inputs.ENVIRONMENT_NAME }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup helmfile
+        uses: helmfile/helmfile-action@v1.9.1
+        with:
+          helmfile-version: "v0.167.1"
+          helm-version: "v3.15.3"
+          helm-plugins: >
+            https://github.com/databus23/helm-diff,
+          helmfile-args: diff --suppress-secrets
+          helmfile-auto-init: "false"

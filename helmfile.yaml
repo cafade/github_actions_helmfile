@@ -1,0 +1,6 @@
+helmDefaults:
+  atomic: true
+  wait: true
+
+helmfiles:
+  - path: applications/ingress-nginx/helmfile.yaml

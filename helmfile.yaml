@@ -2,5 +2,12 @@ helmDefaults:
   atomic: true
   wait: true
 
+environments:
+  dev: {}
+  qa: {}
+  prod: {}
+
 helmfiles:
   - path: applications/ingress-nginx/helmfile.yaml
+    values:
+      - applications/ingress-nginx/environments/{{ .Environment.Name }}.values.yaml

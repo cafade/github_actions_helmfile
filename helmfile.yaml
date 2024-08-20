@@ -10,4 +10,4 @@ environments:
 helmfiles:
   - path: applications/ingress-nginx/helmfile.yaml
     values:
-      - environments/{{ .Environment.Name }}.yaml
+      - applications/ingress-nginx/environments/{{ .Environment.Name }}.yaml
